@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Main View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MainViewController" customModule="ForTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="yNB-Ev-czP"/>
+                    <connections>
+                        <segue destination="FUO-DJ-Eve" kind="presentation" identifier="searchVC" id="x6f-OP-cH6"/>
+                        <segue destination="yw8-dJ-g7P" kind="presentation" identifier="myMusicVC" id="fGY-T9-2jS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="928.98550724637687" y="78.348214285714278"/>
+        </scene>
+        <!--Player -->
+        <scene sceneID="6e9-ic-nS3">
+            <objects>
+                <viewController storyboardIdentifier="playerVC" id="Fq7-EC-fou" userLabel="Player " customClass="PlayerViewController" customModule="ForTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ne1-Ke-gfF">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="08f-ZX-6h8"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m8a-5k-icX" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1684.057971014493" y="77.678571428571431"/>
+        </scene>
+        <!--Music-->
+        <scene sceneID="5Sl-hB-nbf">
+            <objects>
+                <viewController storyboardIdentifier="myMusicVC" id="Ss5-G2-fEB" userLabel="Music" customClass="MyMusicViewController" customModule="ForTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5MV-DO-nTN">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8aO-ZY-KQB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" title="My Music" id="Q8R-oE-Kdv"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8JY-be-eaC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="504" y="763"/>
+        </scene>
+        <!--Search-->
+        <scene sceneID="O0M-Im-CtW">
+            <objects>
+                <viewController storyboardIdentifier="searchVC" title="Search" id="wrR-07-Gne" userLabel="Search" customClass="SearchViewController" customModule="ForTests" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="ZfL-JR-Fac">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Gch-7l-x71">
+                                <rect key="frame" x="0.0" y="56" width="414" height="786"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="NiJ-jc-uCc"/>
+                        <constraints>
+                            <constraint firstItem="Gch-7l-x71" firstAttribute="bottom" secondItem="NiJ-jc-uCc" secondAttribute="bottom" id="IbL-NE-rSK"/>
+                            <constraint firstItem="Gch-7l-x71" firstAttribute="trailing" secondItem="NiJ-jc-uCc" secondAttribute="trailing" id="O9e-A8-uOY"/>
+                            <constraint firstItem="Gch-7l-x71" firstAttribute="top" secondItem="NiJ-jc-uCc" secondAttribute="top" id="dLP-N2-KZh"/>
+                            <constraint firstItem="Gch-7l-x71" firstAttribute="leading" secondItem="NiJ-jc-uCc" secondAttribute="leading" id="kNT-5E-Obn"/>
+                            <constraint firstItem="Gch-7l-x71" firstAttribute="leading" secondItem="NiJ-jc-uCc" secondAttribute="leading" id="vcD-Wz-7wK"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Search" id="cgh-2Q-5Pf"/>
+                    <connections>
+                        <outlet property="tableView" destination="Gch-7l-x71" id="2Mt-OQ-WYp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h60-QO-QFw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2592.753623188406" y="762.72321428571422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="WzA-BL-3om">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="FUO-DJ-Eve" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hgQ-W0-aTz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" name="BackgroundColor"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wrR-07-Gne" kind="relationship" relationship="rootViewController" id="Yif-eU-E29"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="kQW-W0-M32" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839.1304347826087" y="762.72321428571422"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="e0Y-MY-YAB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yw8-dJ-g7P" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="CTg-s6-Vd7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ss5-G2-fEB" kind="relationship" relationship="rootViewController" id="Yhv-1w-nzi"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cGs-9x-SWc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-299" y="763"/>
+        </scene>
+    </scenes>
+    <resources>
+        <namedColor name="BackgroundColor">
+            <color red="0.011764705882352941" green="0.058823529411764705" blue="0.019607843137254902" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
