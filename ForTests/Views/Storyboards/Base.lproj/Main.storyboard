@@ -33,7 +33,7 @@
         <scene sceneID="6e9-ic-nS3">
             <objects>
                 <viewController storyboardIdentifier="playerVC" id="Fq7-EC-fou" userLabel="Player " customClass="PlayerViewController" customModule="ForTests" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ne1-Ke-gfF">
+                    <view key="view" contentMode="scaleToFill" id="ne1-Ke-gfF" customClass="PlayerView" customModule="ForTests" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="08f-ZX-6h8"/>
@@ -133,7 +133,7 @@
     </scenes>
     <resources>
         <namedColor name="BackgroundColor">
-            <color red="0.011764705882352941" green="0.058823529411764705" blue="0.019607843137254902" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.011764705882352941" green="0.058823529411764705" blue="0.019607843137254902" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

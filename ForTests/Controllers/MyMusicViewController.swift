@@ -13,8 +13,8 @@ class MyMusicViewController: UIViewController {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: MyMusicViewController.createLayout())
     
     // MARK: -  Properties
-    var coreDataStack: CoreDataStack?
-    var myTrack: [MyTrack] = []
+    public var coreDataStack: CoreDataStack?
+    private var myTrack: [MyTrack] = []
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -65,7 +65,7 @@ class MyMusicViewController: UIViewController {
         collectionView.dataSource = self
         
     }
-    static func createLayout() -> UICollectionViewCompositionalLayout {
+   private static func createLayout() -> UICollectionViewCompositionalLayout {
         
         let item = NSCollectionLayoutItem(layoutSize: NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
         item.contentInsets = NSDirectionalEdgeInsets(top: 10, leading: 10, bottom: 10, trailing: 10)

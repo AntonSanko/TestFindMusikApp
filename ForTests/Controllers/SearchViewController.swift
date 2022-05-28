@@ -18,16 +18,14 @@ class SearchViewController: UIViewController {
     }
     
     // MARK: - Constants
-    let queryService = QueryService()
-    let searchController = UISearchController(searchResultsController: nil)
+    private let queryService = QueryService()
+    private let searchController = UISearchController(searchResultsController: nil)
     
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     // MARK: - Variables
-    var searchResults: [Track] = []
-    
-   
+    private var searchResults: [Track] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,13 +33,9 @@ class SearchViewController: UIViewController {
         var cellNib = UINib(nibName: TableView.CellIdentifiers.searchResultCell, bundle: nil)
         tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.searchResultCell)
         cellNib = UINib(nibName: TableView.CellIdentifiers.nothingFoundCell, bundle: nil)
-        tableView.register(cellNib,
-                           forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
-      
-        cellNib = UINib(nibName: TableView.CellIdentifiers.loadingCell,
-                        bundle: nil)
-        tableView.register(cellNib,
-                           forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.nothingFoundCell)
+        cellNib = UINib(nibName: TableView.CellIdentifiers.loadingCell, bundle: nil)
+        tableView.register(cellNib, forCellReuseIdentifier: TableView.CellIdentifiers.loadingCell)
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -51,7 +45,6 @@ class SearchViewController: UIViewController {
         super.viewWillDisappear(animated)
         searchController.dismiss(animated: true)
     }
-    
     private func setupSearchBar() {
         navigationItem.searchController = searchController
         searchController.searchBar.placeholder = "Songs or Artists"
@@ -59,19 +52,16 @@ class SearchViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
     }
 }
-
 // MARK: - Search Bar Delegate
 extension SearchViewController: UISearchBarDelegate {
   func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
   
     guard let searchText = searchBar.text, !searchText.isEmpty else { return }
     queryService.getSearchResults(searchTerm: searchText) { [weak self] results, errorMessage in
-      
       if let results = results {
         self?.searchResults = results
         self?.tableView.reloadData()
       }
-      
       if !errorMessage.isEmpty {
         print("Search error: " + errorMessage)
       }
@@ -93,9 +83,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return searchResults.count
         }
     }
-  
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
         switch queryService.state {
         case .notSearchedYet:
             print("?????")
@@ -116,7 +104,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         }
     }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         100
     }
@@ -124,12 +111,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let playerVC = storyboard.instantiateViewController(withIdentifier: "playerVC") as? PlayerViewController else { return }
-        
         playerVC.track = searchResults[indexPath.row]
         playerVC.modalPresentationStyle = .fullScreen
         present(playerVC, animated: true)
     }
-    
     func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
         switch queryService.state {
         case .notSearchedYet, .loading, .noResults:

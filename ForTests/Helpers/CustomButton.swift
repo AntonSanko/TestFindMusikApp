@@ -32,4 +32,30 @@ class CustomButton {
         button.alpha = 0
         return button
     }
+    static func createShareButton() -> UIButton {
+        let button = UIButton()
+        button.configuration = .setCustomImage("square.and.arrow.up", config: .filled(), pointSize: 20, scale: .medium)
+        button.configuration?.baseBackgroundColor = .systemGray
+        button.configuration?.cornerStyle = .capsule
+        button.alpha = 0.5
+        return button
+    }
+    static func createCloseButton() -> UIButton {
+        let button = UIButton()
+        button.configuration = .setCustomImage("chevron.down", config: .filled(), pointSize: 20, scale: .medium)
+        button.configuration?.baseBackgroundColor = .systemGray
+        button.configuration?.cornerStyle = .capsule
+        button.alpha = 0.5
+        return button
+    }
+    static func createPlayButton() -> UIButton {
+        let button = UIButton()
+        button.configuration = .setCustomImage("play.circle.fill", config: .tinted(), pointSize: 50, scale: .large)
+        return button
+    }
+    static func createPauseButton() -> UIButton {
+        let button = UIButton()
+        button.configuration = .setCustomImage("pause.circle.fill", config: .tinted(), pointSize: 50, scale: .large)
+        return button
+    }
 }

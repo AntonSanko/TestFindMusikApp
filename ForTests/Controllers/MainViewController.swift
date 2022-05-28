@@ -12,18 +12,19 @@ import CoreData
 class MainViewController: UIViewController {
     
     // MARK: -  Properties
-    var matcher: MatchingHelperService?
-    lazy var coreDataStack = CoreDataStack(modelName: "MyMusic")
-    var track: Track? {
+    private var matcher: MatchingHelperService?
+    lazy private var coreDataStack = CoreDataStack(modelName: "MyMusic")
+    private var track: Track? {
         didSet {
             stopAnimation()
             toPlayerVC()
         }
     }
-    var matchButton = CustomButton.createMathButton()
-    var myMusicButton = CustomButton.createMyMusicButton()
-    var searchButton = CustomButton.createSearchButton()
-    var cancelButton = CustomButton.createCancelButton()
+    private var matchButton = CustomButton.createMathButton()
+    private var myMusicButton = CustomButton.createMyMusicButton()
+    private var searchButton = CustomButton.createSearchButton()
+    private var cancelButton = CustomButton.createCancelButton()
+    private let animator = Animator()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -33,7 +34,6 @@ class MainViewController: UIViewController {
         matcher = MockMatchingHelper(matchHandler: songMatched)
         setUpButtons()
     }
-    
     // MARK: - ConfigButtons
     private func setUpButtons() {
         setConstraints()
@@ -45,17 +45,16 @@ class MainViewController: UIViewController {
     // MARK: Buttons action
     @objc private func match() {
         startAnimation()
-        animateMatchPulse()
         matcher?.match()
     }
-    @objc func actionCancelButton() {
+    @objc private func actionCancelButton() {
         stopAnimation()
         matcher?.stopListening()
     }
-    @objc func toSearchVC() {
+    @objc private func toSearchVC() {
         performSegue(withIdentifier: "searchVC", sender: nil)
     }
-    @objc func toMyMusicVC() {
+    @objc private func toMyMusicVC() {
         performSegue(withIdentifier: "myMusicVC", sender: nil)
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -65,18 +64,18 @@ class MainViewController: UIViewController {
             controller.coreDataStack = coreDataStack
         }
     }
-    func toPlayerVC() {
+    private func toPlayerVC() {
         let viewController = toViewController(with: "playerVC") as! PlayerViewController
         viewController.track = track
         viewController.state = true
         present(viewController, animated: true)
     }
-    func toViewController(with identifier: String) -> UIViewController {
+    private func toViewController(with identifier: String) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: identifier)
         return controller
     }
-    func songMatched(item: SHMatchedMediaItem?, error: Error?) {
+    private func songMatched(item: SHMatchedMediaItem?, error: Error?) {
         if error != nil {
             stopAnimation()
             if let errorMsg = matcher?.errorMsg, !errorMsg.isEmpty {
@@ -89,7 +88,7 @@ class MainViewController: UIViewController {
             track = Track(name: item?.title ?? "Unknown", artist: item?.artist ?? "", artworkUrl100: item?.artworkURL, trackViewURL: item?.appleMusicURL)
         }
     }
-    func saveTrack(_ item: SHMatchedMediaItem?) {
+    private func saveTrack(_ item: SHMatchedMediaItem?) {
         let music = MyTrack(context: coreDataStack.managerContext)
         music.name = item?.title
         music.artist = item?.artist
@@ -99,40 +98,22 @@ class MainViewController: UIViewController {
         coreDataStack.saveContext()
     }
     // MARK: - Alert
-    func showAlert(_ error: String) {
+    private func showAlert(_ error: String) {
         let alert = UIAlertController(title: "Warning", message: error, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default)
         alert.addAction(action)
         present(alert, animated: true)
     }
     // MARK: Animation
-    func startAnimation() {
-        UIView.animate(withDuration: 0.5) {
-            self.myMusicButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-            self.myMusicButton.alpha = 0
-            self.searchButton.transform = CGAffineTransform(scaleX: 0.5, y: 0.5)
-            self.searchButton.alpha = 0
-            self.cancelButton.alpha = 1
-        }
+    private func startAnimation() {
+        animator.scaleAndFade(views: [myMusicButton, searchButton], identity: false)
+        animator.animateMatchPulse(view: matchButton)
+        animator.fade(view: cancelButton, fade: false)
     }
-    func stopAnimation() {
-        UIView.animate(withDuration: 0.5) {
-            self.myMusicButton.transform = CGAffineTransform.identity
-            self.myMusicButton.alpha = 1
-            self.searchButton.transform = CGAffineTransform.identity
-            self.searchButton.alpha = 1
-            self.cancelButton.alpha = 0
-            self.matchButton.layer.removeAllAnimations()
-        }
-    }
-    func animateMatchPulse() {
-        UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: [.repeat, .autoreverse]) {
-            self.matchButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
-        } completion: { _ in
-            UIView.animate(withDuration: 1, delay: 0) {
-                self.matchButton.transform = CGAffineTransform.identity
-            }
-        }
+    private func stopAnimation() {
+        animator.fade(view: cancelButton, fade: true)
+        animator.scaleAndFade(views: [myMusicButton, searchButton], identity: true)
+        matchButton.layer.removeAllAnimations()
     }
     // MARK: - Constraints
     private func setConstraints() {
@@ -142,16 +123,8 @@ class MainViewController: UIViewController {
         view.addSubview(matchButton)
         myMusicButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 60, bottom: 100, right: 0), size: CGSize(width: 50, height: 50))
         searchButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 100, right: 60), size: .init(width: 50, height: 50))
-        
         cancelButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 100, left: 0, bottom: 0, right: 20), size: .init(width: 150, height: 30))
-       
-        matchButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            matchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            matchButton.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: 70),
-            matchButton.widthAnchor.constraint(equalToConstant: 80),
-            matchButton.heightAnchor.constraint(equalToConstant: 80)
-        ])
+        matchButton.centerInSuperview(size: .init(width: 80, height: 80), padding: .init(top: 100, left: 0, bottom: 0, right: 0))
     }
 }
 

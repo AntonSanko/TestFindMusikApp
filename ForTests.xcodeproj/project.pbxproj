@@ -24,6 +24,8 @@
 		BD4F8257280EB17300CF7269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4F8255280EB17300CF7269 /* LaunchScreen.storyboard */; };
 		BD9E33EB2842728300CA93BA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E33EA2842728300CA93BA /* CustomButton.swift */; };
 		BD9E33ED284277F500CA93BA /* AnchoredConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */; };
+		BD9E33F128428B7000CA93BA /* PlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E33F028428B7000CA93BA /* PlayerView.swift */; };
+		BD9E33F32842AFD400CA93BA /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E33F22842AFD400CA93BA /* Animation.swift */; };
 		BDADCDB82811A86D0001F055 /* MatchingHelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDADCDB72811A86D0001F055 /* MatchingHelperService.swift */; };
 		BDADCDBA2811A8EC0001F055 /* MockMatchingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDADCDB92811A8EC0001F055 /* MockMatchingHelper.swift */; };
 		BDB9B2152812D1ED00591203 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB9B2142812D1ED00591203 /* Colors.xcassets */; };
@@ -58,6 +60,8 @@
 		BD9E33E72842583C00CA93BA /* ForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD9E33EA2842728300CA93BA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchoredConstraints.swift; sourceTree = "<group>"; };
+		BD9E33F028428B7000CA93BA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
+		BD9E33F22842AFD400CA93BA /* Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		BDADCDB72811A86D0001F055 /* MatchingHelperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingHelperService.swift; sourceTree = "<group>"; };
 		BDADCDB92811A8EC0001F055 /* MockMatchingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchingHelper.swift; sourceTree = "<group>"; };
 		BDB9B2142812D1ED00591203 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -143,6 +147,7 @@
 			children = (
 				BD9E33EA2842728300CA93BA /* CustomButton.swift */,
 				BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */,
+				BD9E33F22842AFD400CA93BA /* Animation.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -170,6 +175,7 @@
 				BDADCDBE2811FF5B0001F055 /* Storyboards */,
 				BDADCDBF2811FF750001F055 /* Table View Cells */,
 				BDB9B216281346E700591203 /* CollectionViewCell */,
+				BD9E33F028428B7000CA93BA /* PlayerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 				BD4F824F280EB17000CF7269 /* MainViewController.swift in Sources */,
 				BD2968D02814454000B3665B /* MyMusic.xcdatamodeld in Sources */,
 				BDCFD5B3280EB90E0079F260 /* PlayerViewController.swift in Sources */,
+				BD9E33F32842AFD400CA93BA /* Animation.swift in Sources */,
 				BD4F824B280EB17000CF7269 /* AppDelegate.swift in Sources */,
 				BDADCDB82811A86D0001F055 /* MatchingHelperService.swift in Sources */,
 				BD9E33EB2842728300CA93BA /* CustomButton.swift in Sources */,
@@ -334,6 +341,7 @@
 				BDCFD5BD280EF91E0079F260 /* QueryService.swift in Sources */,
 				BD2968CD281442AF00B3665B /* CoreDataStack.swift in Sources */,
 				BDCFD5C0280F03B50079F260 /* UIImageView+DownloadImage.swift in Sources */,
+				BD9E33F128428B7000CA93BA /* PlayerView.swift in Sources */,
 				BDCFD5B7280ED3390079F260 /* MyMusicViewController.swift in Sources */,
 				BD4F824D280EB17000CF7269 /* SceneDelegate.swift in Sources */,
 				BDCFD5BA280EDC3B0079F260 /* Track.swift in Sources */,
