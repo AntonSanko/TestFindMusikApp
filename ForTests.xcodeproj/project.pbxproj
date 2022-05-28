@@ -22,6 +22,8 @@
 		BD4F8252280EB17000CF7269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4F8250280EB17000CF7269 /* Main.storyboard */; };
 		BD4F8254280EB17300CF7269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BD4F8253280EB17300CF7269 /* Assets.xcassets */; };
 		BD4F8257280EB17300CF7269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BD4F8255280EB17300CF7269 /* LaunchScreen.storyboard */; };
+		BD9E33EB2842728300CA93BA /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E33EA2842728300CA93BA /* CustomButton.swift */; };
+		BD9E33ED284277F500CA93BA /* AnchoredConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */; };
 		BDADCDB82811A86D0001F055 /* MatchingHelperService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDADCDB72811A86D0001F055 /* MatchingHelperService.swift */; };
 		BDADCDBA2811A8EC0001F055 /* MockMatchingHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDADCDB92811A8EC0001F055 /* MockMatchingHelper.swift */; };
 		BDB9B2152812D1ED00591203 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BDB9B2142812D1ED00591203 /* Colors.xcassets */; };
@@ -53,7 +55,9 @@
 		BD4F8253280EB17300CF7269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD4F8256280EB17300CF7269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD4F8258280EB17300CF7269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD7E37F6281439F900C25126 /* ForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9E33E72842583C00CA93BA /* ForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9E33EA2842728300CA93BA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchoredConstraints.swift; sourceTree = "<group>"; };
 		BDADCDB72811A86D0001F055 /* MatchingHelperService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchingHelperService.swift; sourceTree = "<group>"; };
 		BDADCDB92811A8EC0001F055 /* MockMatchingHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMatchingHelper.swift; sourceTree = "<group>"; };
 		BDB9B2142812D1ED00591203 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
@@ -102,7 +106,7 @@
 			isa = PBXGroup;
 			children = (
 				BD4F8249280EB17000CF7269 /* ForTests */,
-				BD7E37F6281439F900C25126 /* ForTests.app */,
+				BD9E33E72842583C00CA93BA /* ForTests.app */,
 			);
 			sourceTree = "<group>";
 		};
@@ -111,18 +115,36 @@
 			children = (
 				BDADCDBC2811FE8B0001F055 /* App Delegate */,
 				BDEE23D1281014FE00A0A369 /* Controllers */,
-				BDADCDBD2811FF270001F055 /* Views */,
-				BDCFD5BB280EF8F50079F260 /* Manager */,
-				BDCFD5BE280F037F0079F260 /* Exstansions */,
-				BDADCDBB2811A9960001F055 /* Mocks */,
-				BD20DA2D2811940E00852B21 /* Protocols */,
-				BDCFD5B8280EDC210079F260 /* Models */,
 				BD2968CB2814429E00B3665B /* CoreDataStack */,
+				BDCFD5BE280F037F0079F260 /* Exstansions */,
+				BD9E33EF284281AA00CA93BA /* Helpers */,
+				BDCFD5BB280EF8F50079F260 /* Manager */,
+				BDADCDBB2811A9960001F055 /* Mocks */,
+				BDCFD5B8280EDC210079F260 /* Models */,
+				BD20DA2D2811940E00852B21 /* Protocols */,
+				BD8FBE9D283EA5B9007E1D18 /* Resources */,
+				BDADCDBD2811FF270001F055 /* Views */,
+			);
+			path = ForTests;
+			sourceTree = "<group>";
+		};
+		BD8FBE9D283EA5B9007E1D18 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
 				BD4F8253280EB17300CF7269 /* Assets.xcassets */,
 				BDB9B2142812D1ED00591203 /* Colors.xcassets */,
 				BD4F8258280EB17300CF7269 /* Info.plist */,
 			);
-			path = ForTests;
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		BD9E33EF284281AA00CA93BA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				BD9E33EA2842728300CA93BA /* CustomButton.swift */,
+				BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		BDADCDBB2811A9960001F055 /* Mocks */ = {
@@ -235,7 +257,7 @@
 			);
 			name = ForTests;
 			productName = ForTests;
-			productReference = BD7E37F6281439F900C25126 /* ForTests.app */;
+			productReference = BD9E33E72842583C00CA93BA /* ForTests.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -296,6 +318,7 @@
 				BDCFD5B5280EC5A00079F260 /* SearchViewController.swift in Sources */,
 				BDB9B21A281347BF00591203 /* MusicCollectionCell.swift in Sources */,
 				BD2968DC28144CDF00B3665B /* MyTrack+CoreDataProperties.swift in Sources */,
+				BD9E33ED284277F500CA93BA /* AnchoredConstraints.swift in Sources */,
 				BD2968DB28144CDF00B3665B /* MyTrack+CoreDataClass.swift in Sources */,
 				BD20DA1C28106C2600852B21 /* Data+Download.swift in Sources */,
 				BD20DA2C281188C600852B21 /* MatchingHelper.swift in Sources */,
@@ -304,6 +327,7 @@
 				BDCFD5B3280EB90E0079F260 /* PlayerViewController.swift in Sources */,
 				BD4F824B280EB17000CF7269 /* AppDelegate.swift in Sources */,
 				BDADCDB82811A86D0001F055 /* MatchingHelperService.swift in Sources */,
+				BD9E33EB2842728300CA93BA /* CustomButton.swift in Sources */,
 				BDADCDBA2811A8EC0001F055 /* MockMatchingHelper.swift in Sources */,
 				BDCFD5C7280F05310079F260 /* SearchResultCell.swift in Sources */,
 				BD20DA1A281047C000852B21 /* Button+CustomConfiguration.swift in Sources */,
@@ -461,7 +485,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 893MBG29X2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ForTests/Info.plist;
+				INFOPLIST_FILE = ForTests/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -491,7 +515,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 893MBG29X2;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = ForTests/Info.plist;
+				INFOPLIST_FILE = ForTests/Resources/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

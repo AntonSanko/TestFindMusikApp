@@ -7,7 +7,7 @@
 
 import UIKit
 import AVFoundation
-// TODO: - Player don't play on a phone
+
 class PlayerViewController: UIViewController {
     
     enum StateOfPlayButton {
@@ -53,10 +53,7 @@ class PlayerViewController: UIViewController {
         setLabels()
         setImageView()
         setGradient()
-        configureShareButton()
-        configureCloseButton()
-        configurePlayButton()
-        addLabelsConstraints()
+        
         playButton.isHidden = state
     }
     
@@ -64,6 +61,13 @@ class PlayerViewController: UIViewController {
         super.viewWillDisappear(animated)
         guard let player = player else { return }
         player.stop()
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureShareButton()
+        configureCloseButton()
+        configurePlayButton()
+        addLabelsConstraints()
     }
     
     deinit {
@@ -129,7 +133,6 @@ class PlayerViewController: UIViewController {
     }
     @objc func play() {
         guard let track = track else { return }
-
         switch stateOfPlayButton {
         case .play:
             startActivityIndicator()
@@ -227,7 +230,6 @@ class PlayerViewController: UIViewController {
 extension PlayerViewController: AVAudioPlayerDelegate {
     
     func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        print("delegate stop")
         playButton.configuration = .setCustomImage("play.circle.fill", config: .tinted(), pointSize: 50, scale: .large)
     }
 }

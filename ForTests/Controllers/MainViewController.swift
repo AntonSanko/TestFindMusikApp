@@ -8,6 +8,7 @@
 import UIKit
 import ShazamKit
 import CoreData
+
 class MainViewController: UIViewController {
     
     // MARK: -  Properties
@@ -19,10 +20,10 @@ class MainViewController: UIViewController {
             toPlayerVC()
         }
     }
-    var matchButton = UIButton()
-    var myMusicButton = UIButton()
-    var searchButton = UIButton()
-    var cancelButton = UIButton()
+    var matchButton = CustomButton.createMathButton()
+    var myMusicButton = CustomButton.createMyMusicButton()
+    var searchButton = CustomButton.createSearchButton()
+    var cancelButton = CustomButton.createCancelButton()
     
     // MARK: - LifeCycle
     override func viewDidLoad() {
@@ -30,56 +31,27 @@ class MainViewController: UIViewController {
         view.backgroundColor = UIColor(named: "BackgroundColor")
 //        matcher = MatchingHelper(matchHandler: songMatched)
         matcher = MockMatchingHelper(matchHandler: songMatched)
-        
-        configureMatchButton()
-        configureMyMusicButton()
-        configureSearchButton()
-        configureCancelButton()
+        setUpButtons()
     }
     
     // MARK: - ConfigButtons
-    private func configureMatchButton() {
-        matchButton.configuration = .setCustomImage("mic.circle.fill", config: .tinted(), pointSize: 80, scale: .large)
+    private func setUpButtons() {
+        setConstraints()
         matchButton.addTarget(self, action: #selector(match), for: .touchUpInside)
-        addMatchButtonConstraints()
-        
-    }
-    
-    private func configureMyMusicButton() {
-        myMusicButton.configuration = .setCustomImage("music.note.list", config: .tinted(), pointSize: 40, scale: .large)
         myMusicButton.addTarget(self, action: #selector(toMyMusicVC), for: .touchUpInside)
-        addMyMusicButtonConstraints()
-        
-    }
-    
-    private func configureSearchButton() {
-        searchButton.configuration = .setCustomImage("text.magnifyingglass", config: .tinted(), pointSize: 40, scale: .large)
         searchButton.addTarget(self, action: #selector(toSearchVC), for: .touchUpInside)
-        addSearchButtonConstraints()
-        
-    }
-    private func configureCancelButton() {
-        cancelButton.configuration = .setCustomImage("xmark", config: .tinted(), pointSize: 30, scale: .small)
-        cancelButton.configuration?.title = "Cancel"
-        cancelButton.configuration?.attributedTitle?.font = UIFont.boldSystemFont(ofSize: 25)
-        cancelButton.configuration?.imagePadding = 5
-        cancelButton.alpha = 0
         cancelButton.addTarget(self, action: #selector(actionCancelButton), for: .touchUpInside)
-        addCancelButtonConstraints()
-        
     }
     // MARK: Buttons action
     @objc private func match() {
         startAnimation()
         animateMatchPulse()
         matcher?.match()
-        
     }
     @objc func actionCancelButton() {
         stopAnimation()
         matcher?.stopListening()
     }
-    
     @objc func toSearchVC() {
         performSegue(withIdentifier: "searchVC", sender: nil)
     }
@@ -93,22 +65,17 @@ class MainViewController: UIViewController {
             controller.coreDataStack = coreDataStack
         }
     }
-    
     func toPlayerVC() {
         let viewController = toViewController(with: "playerVC") as! PlayerViewController
         viewController.track = track
         viewController.state = true
         present(viewController, animated: true)
     }
-    
     func toViewController(with identifier: String) -> UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: identifier)
         return controller
     }
-    
-    
-    
     func songMatched(item: SHMatchedMediaItem?, error: Error?) {
         if error != nil {
             stopAnimation()
@@ -130,8 +97,6 @@ class MainViewController: UIViewController {
         music.trackViewURL = item?.appleMusicURL
         
         coreDataStack.saveContext()
-        
-    
     }
     // MARK: - Alert
     func showAlert(_ error: String) {
@@ -164,50 +129,28 @@ class MainViewController: UIViewController {
         UIView.animate(withDuration: 0.4, delay: 0, usingSpringWithDamping: 0.3, initialSpringVelocity: 0.5, options: [.repeat, .autoreverse]) {
             self.matchButton.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         } completion: { _ in
-            self.matchButton.transform = CGAffineTransform.identity
+            UIView.animate(withDuration: 1, delay: 0) {
+                self.matchButton.transform = CGAffineTransform.identity
+            }
         }
-
     }
-    
     // MARK: - Constraints
-    private func addMatchButtonConstraints() {
+    private func setConstraints() {
+        view.addSubview(myMusicButton)
+        view.addSubview(searchButton)
+        view.addSubview(cancelButton)
         view.addSubview(matchButton)
+        myMusicButton.anchor(top: nil, leading: view.leadingAnchor, bottom: view.bottomAnchor, trailing: nil, padding: .init(top: 0, left: 60, bottom: 100, right: 0), size: CGSize(width: 50, height: 50))
+        searchButton.anchor(top: nil, leading: nil, bottom: view.bottomAnchor, trailing: view.trailingAnchor, padding: .init(top: 0, left: 0, bottom: 100, right: 60), size: .init(width: 50, height: 50))
+        
+        cancelButton.anchor(top: view.topAnchor, leading: nil, bottom: nil, trailing: view.trailingAnchor, padding: .init(top: 100, left: 0, bottom: 0, right: 20), size: .init(width: 150, height: 30))
+       
         matchButton.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             matchButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             matchButton.centerYAnchor.constraint(equalTo: view.centerYAnchor,constant: 70),
             matchButton.widthAnchor.constraint(equalToConstant: 80),
             matchButton.heightAnchor.constraint(equalToConstant: 80)
-        ])
-    }
-    private func addMyMusicButtonConstraints() {
-        view.addSubview(myMusicButton)
-        myMusicButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            myMusicButton.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 60),
-            myMusicButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
-            myMusicButton.widthAnchor.constraint(equalToConstant: 50),
-            myMusicButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    private func addSearchButtonConstraints() {
-        view.addSubview(searchButton)
-        searchButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            searchButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -60),
-            searchButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -100),
-            searchButton.widthAnchor.constraint(equalToConstant: 50),
-            searchButton.heightAnchor.constraint(equalToConstant: 50)
-        ])
-    }
-    private func addCancelButtonConstraints() {
-        view.addSubview(cancelButton)
-        cancelButton.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            cancelButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant:  -20),
-            cancelButton.topAnchor.constraint(equalTo: view.topAnchor, constant: 100.0),
-            cancelButton.widthAnchor.constraint(equalToConstant: 150),
-            cancelButton.heightAnchor.constraint(equalToConstant: 30)
         ])
     }
 }
