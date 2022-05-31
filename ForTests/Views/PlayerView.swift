@@ -23,6 +23,7 @@ class PlayerView: UIView {
         label.textColor = .white
         label.font = UIFont.boldSystemFont(ofSize: 15)
         label.numberOfLines = 0
+        label.textColor = UIColor.lightGray
         label.lineBreakMode = .byWordWrapping
         label.backgroundColor = .clear
         return label
@@ -60,8 +61,12 @@ class PlayerView: UIView {
     private func addLabelsConstraints() {
         addSubview(stackView)
         stackView.addArrangedSubview(nameLabel)
+        let width = self.frame.width - 20
+        nameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: width).isActive = true
+        artistLabel.widthAnchor.constraint(lessThanOrEqualToConstant: width).isActive = true
         stackView.addArrangedSubview(artistLabel)
-        stackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 20, bottom: 200, right: 0))
+        stackView.anchor(top: nil, leading: leadingAnchor, bottom: bottomAnchor, trailing: nil, padding: .init(top: 0, left: 20, bottom: 200, right: 20))
+        layoutIfNeeded()
     }
     public func startActivityIndicator() {
         

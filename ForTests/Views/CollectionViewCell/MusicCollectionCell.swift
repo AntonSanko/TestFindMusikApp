@@ -23,7 +23,7 @@ class MusicCollectionCell: UICollectionViewCell {
     private let nameLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.font = UIFont.boldSystemFont(ofSize: 20)
+        label.font = UIFont.boldSystemFont(ofSize: 18)
         label.numberOfLines = 0
         label.lineBreakMode = .byWordWrapping
         return label
@@ -36,25 +36,27 @@ class MusicCollectionCell: UICollectionViewCell {
         label.lineBreakMode = .byWordWrapping
         return label
     }()
+    private var stackView: UIStackView = {
+        let stackView = UIStackView()
+        stackView.axis = .vertical
+        stackView.spacing = 1
+        return stackView
+    }()
     
     // MARK: - LifeCycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(imageView)
         setupContentView()
+        imageView.frame.size.width = contentView.bounds.width
+        imageView.frame.size.height = contentView.bounds.height * 0.7
+        constraintLabels()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
     
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        constraintLabels()
-        imageView.frame.size.width = contentView.bounds.width
-        imageView.frame.size.height = contentView.bounds.height * 0.7
-    }
     override func prepareForReuse() {
         super.prepareForReuse()
         downloadTask?.cancel()
@@ -65,11 +67,9 @@ class MusicCollectionCell: UICollectionViewCell {
     func configureCell(for track: MyTrack) {
         nameLabel.text = track.name
         artistLabel.text = track.artist
-        
         imageView.image = UIImage(named: "music")
         guard let url = track.artworkUrl else { return }
         downloadTask = imageView.loadImage(url: url)
-        
     }
     
     private func setupContentView() {
@@ -81,23 +81,20 @@ class MusicCollectionCell: UICollectionViewCell {
     }
     // MARK: - Constraints
     private func constraintLabels() {
-        contentView.addSubview(nameLabel)
+        contentView.addSubview(stackView)
+        stackView.addArrangedSubview(nameLabel)
+        stackView.addArrangedSubview(artistLabel)
+        stackView.translatesAutoresizingMaskIntoConstraints = false
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 3),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            nameLabel.widthAnchor.constraint(equalToConstant: contentView.bounds.width),
-            nameLabel.heightAnchor.constraint(equalToConstant: 50)
-        ])
-        contentView.addSubview(artistLabel)
         artistLabel.translatesAutoresizingMaskIntoConstraints = false
+        let width = contentView.frame.width
         NSLayoutConstraint.activate([
-            artistLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            artistLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
-            artistLabel.widthAnchor.constraint(equalToConstant: contentView.bounds.width),
-            artistLabel.heightAnchor.constraint(equalToConstant: 40)
+            stackView.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 13),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8),
+            stackView.widthAnchor.constraint(equalToConstant: contentView.bounds.width),
+            stackView.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor, constant: 50),
+            nameLabel.heightAnchor.constraint(lessThanOrEqualToConstant: 60),
+            nameLabel.widthAnchor.constraint(lessThanOrEqualToConstant: width)
         ])
-        
     }
-    
 }

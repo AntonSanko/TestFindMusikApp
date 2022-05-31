@@ -57,7 +57,7 @@
 		BD4F8253280EB17300CF7269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BD4F8256280EB17300CF7269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BD4F8258280EB17300CF7269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		BD9E33E72842583C00CA93BA /* ForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ForTests.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD9E33E72842583C00CA93BA /* ForTests.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; name = ForTests.app; path = "/Users/antonsanko/Desktop/MyProject/TestFindMusikApp/build/Debug-iphoneos/ForTests.app"; sourceTree = "<absolute>"; };
 		BD9E33EA2842728300CA93BA /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		BD9E33EC284277F500CA93BA /* AnchoredConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnchoredConstraints.swift; sourceTree = "<group>"; };
 		BD9E33F028428B7000CA93BA /* PlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerView.swift; sourceTree = "<group>"; };
@@ -110,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				BD4F8249280EB17000CF7269 /* ForTests */,
-				BD9E33E72842583C00CA93BA /* ForTests.app */,
 			);
 			sourceTree = "<group>";
 		};

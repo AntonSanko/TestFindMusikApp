@@ -27,26 +27,29 @@
                         </constraints>
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" weight="thin"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zeK-9R-qca">
-                        <rect key="frame" x="111" y="61" width="38" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <color key="textColor" systemColor="systemGrayColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="track" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-se-vjX">
-                        <rect key="frame" x="111" y="18" width="39" height="21"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="track" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtr-se-vjX">
+                        <rect key="frame" x="111" y="12" width="265" height="20.5"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="name" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="zeK-9R-qca">
+                        <rect key="frame" x="111" y="38.5" width="265" height="33.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" systemColor="systemGrayColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="zeK-9R-qca" firstAttribute="top" secondItem="vtr-se-vjX" secondAttribute="bottom" constant="22" id="9zX-4B-mRO"/>
+                    <constraint firstAttribute="bottom" relation="lessThanOrEqual" secondItem="zeK-9R-qca" secondAttribute="bottom" constant="28" id="AGg-Zn-WX2"/>
                     <constraint firstItem="vtr-se-vjX" firstAttribute="leading" secondItem="tf9-g0-ACt" secondAttribute="trailing" constant="15" id="DMm-4I-dlP"/>
                     <constraint firstItem="tf9-g0-ACt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="GXD-0y-08x"/>
-                    <constraint firstItem="zeK-9R-qca" firstAttribute="leading" secondItem="tf9-g0-ACt" secondAttribute="trailing" constant="15" id="ZqE-EV-CXl"/>
+                    <constraint firstAttribute="trailing" secondItem="vtr-se-vjX" secondAttribute="trailing" constant="40" id="V4B-HU-pdu"/>
                     <constraint firstItem="tf9-g0-ACt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="aBN-3G-tZQ"/>
-                    <constraint firstItem="vtr-se-vjX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="18" id="let-vj-yNX"/>
+                    <constraint firstAttribute="trailing" secondItem="zeK-9R-qca" secondAttribute="trailing" constant="40" id="gct-G0-KAM"/>
+                    <constraint firstItem="zeK-9R-qca" firstAttribute="top" relation="lessThanOrEqual" secondItem="vtr-se-vjX" secondAttribute="bottom" constant="6" id="gh2-Qr-SdJ"/>
+                    <constraint firstItem="vtr-se-vjX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="let-vj-yNX"/>
+                    <constraint firstItem="zeK-9R-qca" firstAttribute="leading" secondItem="tf9-g0-ACt" secondAttribute="trailing" constant="15" id="t5n-s4-qNY"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
@@ -56,13 +59,13 @@
                 <outlet property="artworkImageView" destination="tf9-g0-ACt" id="N0V-Yo-EbI"/>
                 <outlet property="nameLabel" destination="vtr-se-vjX" id="udb-jk-J5v"/>
             </connections>
-            <point key="canvasLocation" x="-60.869565217391312" y="93.415178571428569"/>
+            <point key="canvasLocation" x="-60.869565217391312" y="93.080357142857139"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="square" catalog="system" width="128" height="114"/>
         <namedColor name="BackgroundColor">
-            <color red="0.011764705882352941" green="0.058823529411764705" blue="0.019607843137254902" alpha="0.94999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.011764705882352941" green="0.058823529411764705" blue="0.019607843137254902" alpha="0.94999998807907104" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemGrayColor">
             <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
